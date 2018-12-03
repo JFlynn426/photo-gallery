@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './App.css'
+import CategoryList from './CategoryList'
+import PhotoList from './PhotoList'
+import PhotoDetail from './PhotoDetail'
+import PhotoJson from './PhotoJson'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Router>
+        <div className="App">
+          <Link to="/" className="title">
+            Things I Like
+          </Link>
+          <h2>A Photo Gallery by John Flynn</h2>
+
+          <Route exact path="/" component={CategoryList} />
+          <Route path="/category/" component={CategoryList} />
+          <Route exact path="/:subject/" component={PhotoList} />
+          <Route path="/:subject/:number/" component={PhotoDetail} />
+        </div>
+      </Router>
+    )
   }
 }
 
-export default App;
+export default App
